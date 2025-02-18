@@ -1,0 +1,22 @@
+name: 'Qgoda GitHub Pages Action'
+description: 'Builds a static site with Qgoda and deploys it to the github-pages branch'
+author: 'Guido Flohr'
+branding:
+  icon: 'book-open'
+  color: 'blue'
+
+inputs:
+  qgoda_version:
+    description: 'Version of the Qgoda Docker image (e.g., latest, v0.10.0)'
+    required: false
+    default: 'latest'
+
+  github_token:
+    description: 'GitHub Token for pushing to the github-pages branch'
+    required: true
+
+runs:
+  using: 'docker'
+  image: 'docker://gflohr/qgoda:${{ inputs.qgoda_version }}-node'
+  entrypoint: '/entrypoint.sh'
+
