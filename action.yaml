@@ -12,6 +12,6 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://gflohr/qgoda:v0.10.1'
+  image: 'Dockerfile'
   entrypoint: '/entrypoint.sh'
 
