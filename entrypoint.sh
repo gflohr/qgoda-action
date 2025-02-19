@@ -10,3 +10,6 @@ pwd
 
 echo "ls -R"
 ls -R
+
+echo "/home/runner"
+ls -R /home/runner
