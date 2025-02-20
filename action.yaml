@@ -34,9 +34,9 @@ runs:
   using: composite
   steps:
     - name: Pull image
-      run: docker pull gflohr/qgoda:v0.10.1
+      run: docker pull docker.io/gflohr/qgoda:v0.10.1
       shell: sh
 
     - name: Build site
-      run: docker run --rm -v ${{ github.workspace }}/.:/data docker.io/gflohr:qgoda-v0.10.1 --verbose build
+      run: docker run --rm -v ${{ github.workspace }}/.:/data docker.io/gflohr/qgoda:v0.10.1 --verbose build
       shell: sh
