@@ -40,3 +40,11 @@ runs:
     - name: Build site
       run: docker run --rm -v ${{ github.workspace }}/.:/data docker.io/gflohr/qgoda:v0.10.1 --verbose build
       shell: sh
+
+    - name: Current working directory
+      run: pwd
+      shell: sh
+    
+    - name: list directory
+      run: ls -laR
+      shell: sh
