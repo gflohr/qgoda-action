@@ -18,13 +18,17 @@ inputs:
     description: Relative path to your source files, defaults to '.'
     default: .
 
+  qgoda-command:
+    description: The qgoda command to run, defaults to 'build'
+    default: build
+
   image-data:
     description: Working directory inside container image, defaults to '/data'
     default: /data
 
-  github_token:
-    description: GitHub Token for pushing to the github-pages branch
-    required: true
+  docker-registry:
+    description: The container registry to use, defaults to 'docker.io'
+    default: 'docker.io'
 
 runs:
   using: composite
@@ -34,5 +38,5 @@ runs:
       shell: sh
 
     - name: Build site
-      run: docker run --rm -v ${{ github.workspace }}/.:/data gflohr:qgoda-v0.10.1 --verbose build
+      run: docker run --rm -v ${{ github.workspace }}/.:/data docker.io/gflohr:qgoda-v0.10.1 --verbose build
       shell: sh
