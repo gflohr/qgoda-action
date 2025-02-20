@@ -1,17 +1,38 @@
-name: 'Qgoda GitHub Pages Action'
-description: 'Builds a static site with Qgoda and deploys it to the github-pages branch'
-author: 'Guido Flohr'
+name: Qgoda GitHub Pages Action
+description: Builds a static site with Qgoda and deploys it to the github-pages branch
+author: Guido Flohr
 branding:
-  icon: 'book-open'
-  color: 'blue'
+  icon: book-open
+  color: blue
 
 inputs:
+  qgoda-version:
+    description: Version of Qgoda to use, defaults to 'latest'
+    default: latest
+  
+  qgoda-image:
+    description: Which docker image to use, defaults to 'gflohr/qgoda'
+    default: gflohr/qgoda
+  
+  qgoda-srcdir:
+    description: Relative path to your source files, defaults to '.'
+    default: .
+
+  image-data:
+    description: Working directory inside container image, defaults to '/data'
+    default: /data
+
   github_token:
-    description: 'GitHub Token for pushing to the github-pages branch'
+    description: GitHub Token for pushing to the github-pages branch
     required: true
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  entrypoint: '/entrypoint.sh'
+  using: composite
+  steps:
+    - name: Pull image
+      run: docker pull gflohr/qgoda:v0.10.1
+      shell: sh
 
+    - name: Build site
+      run: docker run -it --rm -v ${{ github.workspace }}/.:/data gflohr:qgoda-v0.10.1 --verbose build
+      shell: sh
