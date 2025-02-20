@@ -34,5 +34,5 @@ runs:
       shell: sh
 
     - name: Build site
-      run: docker run -it --rm -v ${{ github.workspace }}/.:/data gflohr:qgoda-v0.10.1 --verbose build
+      run: docker run --rm -v ${{ github.workspace }}/.:/data gflohr:qgoda-v0.10.1 --verbose build
       shell: sh
