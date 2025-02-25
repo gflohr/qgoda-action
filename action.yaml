@@ -33,7 +33,7 @@ inputs:
 runs:
   using: composite
   steps:
-        - name: Pull Qgoda image
+    - name: Pull Qgoda image
       run: docker pull ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }}
       shell: sh
 
