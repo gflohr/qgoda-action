@@ -3,6 +3,24 @@
 This GitHub Action builds a static site using [Qgoda](https://www.qgoda.net/)
 and deploys it to a dedicated branch.
 
+- [Qgoda GitHub Pages Action](#qgoda-github-pages-action)
+	- [Inputs](#inputs)
+	- [Usage Example](#usage-example)
+	- [How It Works](#how-it-works)
+	- [Notes](#notes)
+	- [Qgoda Site Structure](#qgoda-site-structure)
+		- [Create Repository Subdirectory](#create-repository-subdirectory)
+		- [Point Development Webserver to `_site`](#point-development-webserver-to-_site)
+		- [Open Development Webserver at `/my-repo/`](#open-development-webserver-at-my-repo)
+		- [Set `publish_dir` to `_site/my-repo`](#set-publish_dir-to-_sitemy-repo)
+		- [Other Strategies](#other-strategies)
+	- [FAQ](#faq)
+		- [How Can I use Other Package Managers Than `npm`?](#how-can-i-use-other-package-managers-than-npm)
+		- [How Can I use Bun as a Package Manager?](#how-can-i-use-bun-as-a-package-manager)
+		- [Why Does the Deployment Fail with `no such file or directory`?](#why-does-the-deployment-fail-with-no-such-file-or-directory)
+		- [How Can I Make the Action More Verbose?](#how-can-i-make-the-action-more-verbose)
+	- [License](#license)
+
 ## Inputs
 
 | Input Name       | Description                                  | Default        |
@@ -42,7 +60,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
+          publish_dir: ./_site/YOUR_REPO
 ```
 
 ## How It Works
@@ -53,6 +71,42 @@ jobs:
 ## Notes
 - Ensure that the `gh-pages` branch is correctly set up for deployment.
 - Adjust `qgoda-version` as needed to use a specific Qgoda release.
+
+## Qgoda Site Structure
+
+GitHub pages have URLs of the form
+`https://GITHUB_USERNAME.github.io/GITHUB_REPOSITORY`.  That means that all
+URLs must be prefixed with the name of your GitHub repository.  There are
+many ways that you can achieve that but the easiest is to put all your
+source files into a subdirectory that has the name of your repo.  In detail:
+
+### Create Repository Subdirectory
+
+We assume that your repository name is `my-repo`.  So you would create the
+directory `my-repo` at the root of your repository.  Fun fact: When you
+clone your repository, the full path of that directory will be
+`/path/to/checkout/my-repo/my-repo`.
+
+### Point Development Webserver to `_site`
+
+The document root of your development web server should still be `_site`.
+
+### Open Development Webserver at `/my-repo/`
+
+With that setup, you will point your webserver to
+http://localhost:3000/my-site/.
+
+### Set `publish_dir` to `_site/my-repo`
+
+Assuming that you publish your pages with the custom GitHub action
+[`peaceiris/actions-gh-pages@v4`](https://github.com/peaceiris/actions-gh-pages),
+you should set the `publish_dir` variable to `_site/my-repo` like in the
+[usage example above](#usage_example).
+
+### Other Strategies
+
+You could also use symbolic links to solve the prefix problem but inserting
+the directory level with your repo name is actually the simplest approach.
 
 ## FAQ
 
