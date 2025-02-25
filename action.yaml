@@ -6,13 +6,17 @@ branding:
   color: blue
 
 inputs:
-  qgoda-version:
-    description: Version of Qgoda to use, defaults to 'latest'
-    default: latest
-  
+  docker-registry:
+    description: The container registry to use, defaults to 'docker.io'
+    default: 'docker.io'
+
   qgoda-image:
     description: Which docker image to use, defaults to 'gflohr/qgoda'
     default: gflohr/qgoda
+  
+  qgoda-version:
+    description: Version of Qgoda to use, defaults to 'latest-node'
+    default: latest-node
   
   qgoda-srcdir:
     description: Relative path to your source files, defaults to '.'
@@ -26,17 +30,13 @@ inputs:
     description: Working directory inside container image, defaults to '/data'
     default: /data
 
-  docker-registry:
-    description: The container registry to use, defaults to 'docker.io'
-    default: 'docker.io'
-
 runs:
   using: composite
   steps:
-    - name: Pull image
-      run: docker pull docker.io/gflohr/qgoda:v0.10.1
+        - name: Pull Qgoda image
+      run: docker pull ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }}
       shell: sh
 
-    - name: Build site
-      run: docker run --rm -v ${{ github.workspace }}/.:/data docker.io/gflohr/qgoda:v0.10.1 --verbose build
+    - name: Build site with Qgoda
+      run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} --verbose ${{ inputs.qgoda-command }}
       shell: sh
