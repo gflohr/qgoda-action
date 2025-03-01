@@ -34,6 +34,7 @@ This GitHub Action builds a static site using [Qgoda](https://www.qgoda.net/)
 | `qgoda-srcdir`  | Relative path to the source files.            | `.`            |
 | `qgoda-command` | The Qgoda command to run.                     | `build`        |
 | `image-data`    | Working directory inside the container image. | `/data`        |
+| `alpine-dependencies` | Additional dependencies to install with `apk add` | ''   |
 
 ## Usage Example
 
