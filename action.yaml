@@ -38,7 +38,7 @@ runs:
       shell: sh
 
     - name: Fix permissions
-      run: sudo chown -R $USER:$USER ${{ inputs.qgoda-srcdir }}
+      run: sudo chown -R $USER:$USER ${{ inputs.qgoda-srcdir }} && echo ${{ inputs.qgoda-srcdir }} && ls -lR ${{ inputs.qgoda-srcdir }}
       shell: sh
       
     - name: Build site with Qgoda
