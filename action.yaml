@@ -38,7 +38,7 @@ runs:
       shell: sh
 
     - name: Chown ownership
-      run: docker run --user=root  --entrypoint=chown --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} -R {{ inputs.image-data }}
+      run: docker run --user=root  --entrypoint=chown --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} -R ${{ inputs.image-data }}
       shell: sh
 
     - name: Build site with Qgoda
