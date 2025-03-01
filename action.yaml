@@ -37,10 +37,18 @@ runs:
       run: docker pull ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }}
       shell: sh
 
-    - name: Fix permissions
-      run: sudo chown -R $USER:$USER ${{ inputs.qgoda-srcdir }} && echo ${{ inputs.qgoda-srcdir }} && ls -lR ${{ inputs.qgoda-srcdir }}
+    - name: Display debugging info 1
+      run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} --entrypoint=ls --entrypoint=-lR --entrypoint=/data ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }}
       shell: sh
-      
+
+    - name: Display debugging info 2
+      run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} --entrypoint=id --entrypoint=-u ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }}
+      shell: sh
+
+    - name: Display debugging info 3
+      run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} --entrypoint=id --entrypoint=-g ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }}
+      shell: sh
+
     - name: Build site with Qgoda
       run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} --verbose ${{ inputs.qgoda-command }}
       shell: sh
