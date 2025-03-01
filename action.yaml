@@ -50,5 +50,5 @@ runs:
       shell: sh
 
     - name: Build site with Qgoda
-      run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} --verbose ${{ inputs.qgoda-command }}
+      run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} ${{ inputs.qgoda-command }}
       shell: sh
