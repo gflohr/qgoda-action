@@ -1,28 +1,28 @@
-# Qgoda GitHub Pages Action
+# Qgoda 🍓 GitHub Pages Action
 
 This GitHub Action builds a static site using [Qgoda](https://www.qgoda.net/)
-and deploys it to a dedicated branch.
+🍓 and deploys it to a dedicated branch.
 
-- [Qgoda GitHub Pages Action](#qgoda-github-pages-action)
-	- [Inputs](#inputs)
-	- [Usage Example](#usage-example)
-	- [How It Works](#how-it-works)
-	- [Notes](#notes)
-	- [Qgoda Site Structure](#qgoda-site-structure)
-		- [Configure `permalink`](#configure-permalink)
-		- [Configure `paths.site`](#configure-pathssite)
-		- [Point Development Webserver to `_site`](#point-development-webserver-to-_site)
-		- [Open Development Webserver at `/my-repo/`](#open-development-webserver-at-my-repo)
-		- [Set `publish_dir`](#set-publish_dir)
-		- [Other Strategies](#other-strategies)
-	- [Examples](#examples)
-	- [FAQ](#faq)
-		- [How Can I use Other Package Managers Than `npm`?](#how-can-i-use-other-package-managers-than-npm)
-		- [How Can I use Bun as a Package Manager?](#how-can-i-use-bun-as-a-package-manager)
-		- [Why Does the Deployment Fail with `no such file or directory`?](#why-does-the-deployment-fail-with-no-such-file-or-directory)
-		- [How Can I Make the Action More Verbose?](#how-can-i-make-the-action-more-verbose)
-		- [How Can I Use the Action with a Monorepo](#how-can-i-use-the-action-with-a-monorepo)
-	- [License](#license)
+- [Qgoda 🍓 GitHub Pages Action](#qgoda--github-pages-action)
+  - [Inputs](#inputs)
+  - [Usage Example](#usage-example)
+  - [How It Works](#how-it-works)
+  - [Notes](#notes)
+  - [Qgoda Site Structure](#qgoda-site-structure)
+    - [Configure `permalink`](#configure-permalink)
+    - [Configure `paths.site`](#configure-pathssite)
+    - [Point Development Webserver to `_site`](#point-development-webserver-to-_site)
+    - [Open Development Webserver at `/my-repo/`](#open-development-webserver-at-my-repo)
+    - [Set `publish_dir`](#set-publish_dir)
+    - [Other Strategies](#other-strategies)
+  - [Examples](#examples)
+  - [FAQ](#faq)
+    - [How Can I use Other Package Managers Than `npm`?](#how-can-i-use-other-package-managers-than-npm)
+    - [How Can I use Bun as a Package Manager?](#how-can-i-use-bun-as-a-package-manager)
+    - [Why Does the Deployment Fail with `no such file or directory`?](#why-does-the-deployment-fail-with-no-such-file-or-directory)
+    - [How Can I Make the Action More Verbose?](#how-can-i-make-the-action-more-verbose)
+    - [How Can I Use the Action with a Monorepo](#how-can-i-use-the-action-with-a-monorepo)
+  - [License](#license)
 
 ## Inputs
 
