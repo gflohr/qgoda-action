@@ -48,7 +48,7 @@ runs:
 
     # Install optional dependencies.
     - name: Install alpine dependencies
-      if: ${{ alpine-dependencies != '' }}
+      if: ${{ inputs.alpine-dependencies != '' }}
       run: docker run --user=root  --entrypoint=apk --rm ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} add ${{ input.alpine-dependencies }}
       shell: sh
 
