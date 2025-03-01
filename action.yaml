@@ -38,7 +38,8 @@ runs:
       shell: sh
 
     - name: Fix permissions
-      run: chown -R $USER:$USER ${{ inputs.qgoda-srcdir }} 
+      run: chown -R $USER:$USER ${{ inputs.qgoda-srcdir }}
+      shell: sh
       
     - name: Build site with Qgoda
       run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} --verbose ${{ inputs.qgoda-command }}
