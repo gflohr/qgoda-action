@@ -37,16 +37,8 @@ runs:
       run: docker pull ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }}
       shell: sh
 
-    - name: Display debugging info 1
-      run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} --entrypoint=ls ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} -lR /data
-      shell: sh
-
-    - name: Display debugging info 2
-      run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} --entrypoint=id ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} -u
-      shell: sh
-
-    - name: Display debugging info 3
-      run: docker run --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} --entrypoint=id ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} -g
+    - name: Chown ownership
+      run: docker run --user=root  --entrypoint=chown --rm -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} -R {{ inputs.image-data }}
       shell: sh
 
     - name: Build site with Qgoda
