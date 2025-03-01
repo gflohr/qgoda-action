@@ -2,7 +2,7 @@ name: Qgoda GitHub Pages Action
 description: Builds a static site with Qgoda and deploys it to the github-pages branch
 author: Guido Flohr
 branding:
-  icon: book-open
+  icon: globe
   color: blue
 
 inputs:
