@@ -44,7 +44,7 @@ runs:
     # The user qgoda must be able to write into the /data directory.
     - name: Chown ownership
       run: |
-        docker run --user=root -entrypoint=chown --rm \
+        docker run --user=root --entrypoint=chown --rm \
           -v ${{ github.workspace }}/${{ inputs.qgoda-srcdir }}:${{ inputs.image-data }} \
           ${{ inputs.docker-registry }}/${{ inputs.qgoda-image }}:${{ inputs.qgoda-version }} \
           -R qgoda ${{ inputs.image-data }}
